@@ -3,6 +3,7 @@
 import { id } from 'date-fns/locale';
 import { Calendar } from '@/components/ui/calendar';
 import { cn } from '@/lib/utils';
+import { weekendDates } from '@/lib/weekendDates';
 
 interface Props {
   readonly year: number;
@@ -24,6 +25,9 @@ export default function Month({ year, month, holiday }: Props) {
     (item: any) => new Date(item.year, item.month - 1, item.day),
   );
   const massLeaveStyle = { backgroundColor: '#34d399', color: '#fff' };
+
+  const weekendSelected = weekendDates(year, month + 1);
+  const weekendStyle = { color: '#f87171' };
 
   const footer = (
     <ul className="mt-2 text-xs">
@@ -49,10 +53,12 @@ export default function Month({ year, month, holiday }: Props) {
       locale={id}
       weekStartsOn={0}
       modifiers={{
+        weekend: weekendSelected,
         nationalHoliday: nationalHolidaySelected,
         massLeave: massLeaveSelected,
       }}
       modifiersStyles={{
+        weekend: weekendStyle,
         nationalHoliday: nationalHolidayStyle,
         massLeave: massLeaveStyle,
       }}
