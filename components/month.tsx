@@ -47,6 +47,7 @@ export default function Month({ year, month, holiday }: Props) {
       defaultMonth={new Date(year, month)}
       className="flex justify-center w-full"
       locale={id}
+      weekStartsOn={0}
       modifiers={{
         nationalHoliday: nationalHolidaySelected,
         massLeave: massLeaveSelected,
