@@ -29,6 +29,13 @@ export const holiday = [
   },
   {
     year: 2024,
+    month: 2,
+    day: 14,
+    description: 'Pemilihan Umum Tahun 2024',
+    status: 'holiday',
+  },
+  {
+    year: 2024,
     month: 3,
     day: 11,
     description: 'Hari Suci Nyepi Tahun Baru Saka 1946',
