@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@builder.io/partytown": "^0.9.1",
+    "@million/lint": "latest",
     "@radix-ui/react-slot": "^1.0.2",
     "@types/node": "20.11.17",
     "@types/react": "18.2.55",
@@ -22,6 +23,7 @@
     "eslint": "8.56.0",
     "eslint-config-next": "14.1.0",
     "lucide-react": "^0.323.0",
+    "million": "^3.0.6",
     "next": "14.1.0",
     "postcss": "8.4.35",
     "react": "18.2.0",
