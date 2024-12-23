@@ -1,6 +1,7 @@
 'use client';
 
 import { id } from 'date-fns/locale';
+
 import { Calendar } from '@/components/ui/calendar';
 import { cn } from '@/lib/utils';
 import { weekendDates } from '@/lib/weekendDates';
@@ -49,7 +50,7 @@ export default function Month({ year, month, holiday }: Props) {
       disableNavigation
       mode="multiple"
       defaultMonth={new Date(year, month)}
-      className="flex justify-center w-full"
+      className="flex w-full justify-center"
       locale={id}
       weekStartsOn={0}
       modifiers={{

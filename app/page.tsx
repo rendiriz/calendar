@@ -1,7 +1,8 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { year } from '@/data/year';
+
 import Footer from '@/components/footer';
+import { year } from '@/data/year';
 
 export default function HomePage() {
   return (
@@ -14,7 +15,7 @@ export default function HomePage() {
             key={item.year}
             href={item.year.toString()}
           >
-            <div className="rounded-lg border bg-card text-card-foreground shadow-sm mb-4">
+            <div className="mb-4 rounded-lg border bg-card text-card-foreground shadow-sm">
               <div className="p-6">
                 <div className="flex items-center gap-6">
                   <Image

@@ -1,8 +1,11 @@
 import '@/styles/globals.css';
+
 import type { Metadata } from 'next';
+
 import { Partytown } from '@builder.io/partytown/react';
+
+import { fontSans, fontSerif } from '@/lib/fonts';
 import { cn } from '@/lib/utils';
-import { fontSerif, fontSans } from '@/lib/fonts';
 
 export const metadata: Metadata = {
   icons: {

@@ -1,8 +1,11 @@
 import { Info } from 'lucide-react';
-import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
-import Month from '@/components/month';
-import { holiday } from '@/data/holiday';
+
 import Footer from '@/components/footer';
+import Month from '@/components/month';
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
+import { year } from '@/data/year';
+import type { Holiday } from '@/types/holiday';
+import { getHolidayData } from '@/utils/holidayLoader';
 
 interface Props {
   readonly params: {
@@ -17,19 +20,28 @@ export const generateMetadata = ({ params }: Props) => {
   };
 };
 
-function monthHoliday(year: number, month: number) {
-  return holiday.filter((item) => item.year === year && item.month === month);
+export async function generateStaticParams() {
+  const years = year;
+
+  return years.map((item) => ({
+    slug: item.year.toString(),
+  }));
 }
 
-export default function CalendarPage({ params }: Props) {
+function monthHoliday(holidays: Holiday[], year: number, month: number) {
+  return holidays.filter((item) => item.year === year && item.month === month);
+}
+
+export default async function CalendarPage({ params }: Props) {
   const month = Array.from({ length: 12 }, (_, i) => i);
+  const holiday = await getHolidayData(params.slug);
 
   const todayYear = new Date().getFullYear();
   const todayMonth = new Date().getMonth() + 1;
   const todayDay = new Date().getDate();
 
   const currentHoliday = holiday.find(
-    (item) =>
+    (item: Holiday) =>
       item.year === todayYear &&
       item.month === todayMonth &&
       item.day === todayDay,
@@ -62,7 +74,7 @@ export default function CalendarPage({ params }: Props) {
               key={item}
               year={Number(params.slug)}
               month={item}
-              holiday={monthHoliday(Number(params.slug), item + 1)}
+              holiday={monthHoliday(holiday, Number(params.slug), item + 1)}
             />
           ))}
         </div>

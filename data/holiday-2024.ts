@@ -1,4 +1,6 @@
-export const holiday = [
+import { Holiday } from '@/types/holiday';
+
+export const holiday: Holiday[] = [
   {
     year: 2024,
     month: 1,
