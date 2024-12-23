@@ -8,12 +8,13 @@ import type { Holiday } from '@/types/holiday';
 import { getHolidayData } from '@/utils/holidayLoader';
 
 interface Props {
-  readonly params: {
+  readonly params: Promise<{
     slug: string;
-  };
+  }>;
 }
 
-export const generateMetadata = ({ params }: Props) => {
+export const generateMetadata = async (props: Props) => {
+  const params = await props.params;
   return {
     title: `Kalender ${params.slug} - Rendi Riz`,
     description: `Kalender ${params.slug} lengkap beserta libur nasional`,
@@ -32,7 +33,8 @@ function monthHoliday(holidays: Holiday[], year: number, month: number) {
   return holidays.filter((item) => item.year === year && item.month === month);
 }
 
-export default async function CalendarPage({ params }: Props) {
+export default async function CalendarPage(props: Props) {
+  const params = await props.params;
   const month = Array.from({ length: 12 }, (_, i) => i);
   const holiday = await getHolidayData(params.slug);
 
